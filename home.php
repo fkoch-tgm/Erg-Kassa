@@ -33,7 +33,23 @@
         while ($row = $result->fetch_assoc()) {
             echo "";
         }*/
-        echo "Test";
+        $hz = 0;
+        $vr = 0;
+        echo "<div class='row'>";
+        while($row = $result->fetch_assoc()) {
+            if($hz == 3) {
+                $hz=0;
+                echo "</div><div class='row'>";
+            }
+            echo "
+<div class='card'>
+    <div class='card-body'>
+        <h4 class='card-title'>" . $row['name'] . "</h4>
+    </div>
+</div>
+            ";
+            $hz = $hz + 1;
+        }
     } else {
         echo "0 results";
     }
