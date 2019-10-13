@@ -42,10 +42,8 @@
                 echo "</div><div class='row'>";
             }
             echo "
-<div class='card'>
-    <div class='card-body'>
-        <h4 class='card-title'>" . $row['name'] . "</h4>
-    </div>
+<div class='col-sm-4'>
+    <h4>". $row['name'] . "</h4>
 </div>
             ";
             $hz = $hz + 1;
