@@ -13,7 +13,7 @@
     <?php
     $servername = "localhost";
     $username = "root";
-    $password = "dataadmin";
+    $password = "6bULvH7qXG54HGs7";
     $dbname = "ergdata";
 
     // Create connection
