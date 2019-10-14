@@ -26,7 +26,7 @@
         }
     </style>
     <script type="text/javascript">
-        inc(shortname) {
+        function inc(shortname) {
             input = document.getElementById(shortname+"-input");
             stat = Number(input.getAttribute("value"));
             if(stat == 9) {
