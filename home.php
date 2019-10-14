@@ -14,6 +14,16 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
             integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
             crossorigin="anonymous"></script>
+
+    <style type="text/css">
+        .numberinput {
+            width: 2em;
+            text-align: center;
+            background: #25ffb3;
+            border: #25ffb3 medium solid;
+            border-radius: .25rem;
+        }
+    </style>
 </head>
 <body>
 <div class="container-fluid">
@@ -51,7 +61,8 @@
             echo "
 <div class='col-sm-4 d-flex'>
    <div class='btn btn-block btn-primary m-2'>
-    <button>" . $row['name'] . " </button>
+    <input class='numberinput' type=text min='0' max='9' value='0' name='" . $row['shortname'] . "' readonly width='1'>
+    <span class='h6'>" . $row['name'] . "</span>
    </div> 
 </div>
             ";
