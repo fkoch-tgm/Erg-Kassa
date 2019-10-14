@@ -25,9 +25,22 @@
             border-radius: .25rem;
         }
     </style>
+    <script type="text/javascript">
+        inc(shortname) {
+            input = document.getElementById(shortname+"-input");
+            stat = Number(input.getAttribute("value"));
+            if(stat == 9) {
+                alert("Zu viele!");
+            }
+            else {
+                input.setAttribute("value",String(stat+1));
+            }
+        }
+    </script>
 </head>
 <body>
 <div class="container-fluid">
+    <form>
     <div class='row'>
     <?php
     $servername = "localhost";
@@ -61,8 +74,8 @@
             }
             echo "
 <div class='col-sm-4 d-flex'>
-   <div class='btn btn-block btn-primary m-2'>
-    <input class='numberinput' type=text min='0' max='9' value='0' name='" . $row['shortname'] . "' readonly width='1'>
+   <div class='btn btn-block btn-primary m-2' onclick='inc(" . $row['shortname'] . ")'>
+    <input id='" . $row['shortname'] . "-input' class='numberinput' type=text min='0' max='9' value='0' name='" . $row['shortname'] . "' readonly width='1'>
     <span class='h6'>" . $row['name'] . "</span>
    </div> 
 </div>
@@ -75,6 +88,7 @@
     $conn->close();
     ?>
 </div>
+</form>
 </div>
 </body>
 </html>
