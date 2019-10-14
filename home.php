@@ -18,6 +18,7 @@
     <style type="text/css">
         .numberinput {
             width: 2em;
+            height: 1.5em;
             text-align: center;
             background: #25ffb3;
             border: #25ffb3 medium solid;
