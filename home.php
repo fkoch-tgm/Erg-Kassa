@@ -26,15 +26,14 @@
         }
     </style>
     <script type="text/javascript">
-        function inc(shortname) {
-            input = document.getElementById(shortname);
+function inc(input) {
             stat = Number(input.getAttribute("value"));
-            if(stat == 9) {
+/*            if(stat == 9) {
                 alert("Zu viele!");
             }
-            else {
+            else {*/
                 input.setAttribute("value",String(stat+1));
-            }
+            //}
         }
     </script>
 </head>
