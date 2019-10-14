@@ -27,7 +27,7 @@
     </style>
     <script type="text/javascript">
         function inc(shortname) {
-            input = document.getElementById(shortname+"-input");
+            input = document.getElementById(shortname);
             stat = Number(input.getAttribute("value"));
             if(stat == 9) {
                 alert("Zu viele!");
@@ -75,7 +75,7 @@
             echo "
 <div class='col-sm-4 d-flex'>
    <div class='btn btn-block btn-primary m-2' onclick='inc(" . $row['shortname'] . ")'>
-    <input id='" . $row['shortname'] . "-input' class='numberinput' type=text min='0' max='9' value='0' name='" . $row['shortname'] . "' readonly width='1'>
+    <input id='" . $row['shortname'] . "' class='numberinput' type=text min='0' max='9' value='0' name='" . $row['shortname'] . "' readonly width='1'>
     <span class='h6'>" . $row['name'] . "</span>
    </div> 
 </div>
