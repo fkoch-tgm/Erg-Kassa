@@ -28,18 +28,18 @@
     <script type="text/javascript">
 function inc(input) {
             stat = Number(input.getAttribute("value"));
-/*            if(stat == 9) {
+            if(stat == 10) {
                 alert("Zu viele!");
             }
-            else {*/
+            else {
                 input.setAttribute("value",String(stat+1));
-            //}
+            }
         }
     </script>
 </head>
 <body>
 <div class="container-fluid">
-    <form>
+    <form action="insert_data.php" method="post">
     <div class='row'>
     <?php
     $servername = "localhost";
@@ -85,7 +85,16 @@ function inc(input) {
         echo "0 results";
     }
     $conn->close();
-    ?>
+?>
+</div>
+<div class="d-flex content-align-end flex-row">
+    <div class="input-group input-group-lg">
+    <input type="text" class="form-control" placeholder="Username" name="user" value="<?php echo $_POST['user'] ?>">
+    <input type="text" class="form-control" placeholder="Passwort" name="pwd" value="<?php echo $_POST['pwd'] ?>">
+        <div class="input-group-append">
+            <button class="btn btn-success btn-large" type=submit>Senden</button>
+        </div>
+    </div>
 </div>
 </form>
 </div>
