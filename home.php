@@ -60,10 +60,6 @@ function inc(input) {
 
     if ($num_rows = $result->num_rows > 0) {
         // output data of each row
-        /*
-        while ($row = $result->fetch_assoc()) {
-            echo "";
-        }*/
         $hz = 0;
         $vr = 0;
         while ($row = $result->fetch_assoc()) {
@@ -74,11 +70,13 @@ function inc(input) {
             echo "
 <div class='col-sm-4 d-flex'>
    <div class='btn btn-block btn-primary m-2' onclick='inc(" . $row['shortname'] . ")'>
-    <input id='" . $row['shortname'] . "' class='numberinput' type=text min='0' max='9' value='0' name='" . $row['shortname'] . "' readonly width='1'>
+    <input id='" . $row['shortname'] . "' class='numberinput' type=text min='0' max='9' value='0' name='" . $row['id'] . "' readonly width='1'>
     <span class='h6'>" . $row['name'] . "</span>
    </div> 
 </div>
-            ";
+";
+            //reset POST
+            $_POST[$row['id']] = 0;
             $hz = $hz + 1;
         }
     } else {

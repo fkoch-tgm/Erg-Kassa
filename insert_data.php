@@ -1,4 +1,5 @@
 <?php
+start_session();
 
 $servername = "localhost";
 $username = "application";
@@ -14,39 +15,53 @@ if ($conn->connect_error) {
 
 echo "connection established <br>";
 
-
-
-//Save all the Data
-$sql = "SELECT shortname FROM produkte";
-$result = $conn->query($sql);
-if($result->num_rows > 0) {
-    while($row = $result->fetch_assoc()) {
-        echo "<br> shortname: " . $row['shortname'];
-        echo" - " . $_POST[$row['shortname']];
-        //create long SQL-String with inserts
-    }
-}
-else {
-    echo "<br>no products";
-}
-
-
 //validate user
-$sql = "SELECT * FROM users"; 
+$user = -1;
+$sql = "SELECT * FROM users";
 $result = $conn->query($sql);
 if($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
-        echo "<br>user: " . $row['username'] . " pwd: " . $row['password'];
-        if($_POST['user'] == $row['username'] && $_POST['pwd'] == $row['password']) {
-            echo "<br>user authenticated";
-            //INSERT the new Data^
+        if($_SESSION['user'] == $row['username'] && $_SESSION['pwd'] == $row['password']) {
+            echo "<br>user authenticated: " . $row['username'] . "<br>";
+            //set user
+            $user = $row['id'];
         }
     }
 }
 else {
-    die("<h2>DATABASE ERROR: EMPTY</h2>");
+    header("Location:home.php?success=false");
+    //die("<h2>DATABASE ERROR: EMPTY</h2>");
+}
+//if no user => die
+if($user == -1) {
+    //    die("no user found");
+    header("Location:login.php?success=false");
 }
 
+//Save all the Data
+$sql = "SELECT * FROM produkte";
+$result = $conn->query($sql);
+$sql_insert = "";
+if($result->num_rows > 0) {
+    while($row = $result->fetch_assoc()) {
+//        echo "<br> id: " . $row['id'];
+//        echo" - " . $_POST[$row['id']];
+        //create long SQL-String with inserts
+        if($_POST[$row['id']] > 0) {
+            $sql_insert .= "INSERT INTO eintragungen (produkt, menge, user) VALUES (".$row['id'].", ".$_POST[$row['id']].", ".$user.");";
+        }
+        unset($_POST[$row['id']]);
+    }
+}
+else {
+    die("<br>no products");
+}
+if($conn->multi_query($sql_insert) === TRUE) {
+    echo "eintragungen gemacht";
+}
+else {
+    header("Location:home.php?success=false");
+}
 
-//header("Location:home.php?success=true");
+header("Location:home.php?success=true");
 ?>
