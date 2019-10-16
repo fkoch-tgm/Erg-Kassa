@@ -1,6 +1,6 @@
 <?php
-start_session();
-
+session_start();
+echo "test";
 $servername = "localhost";
 $username = "application";
 $password = "6FQAjKu5H8Q7oJ9f";
@@ -21,7 +21,7 @@ $sql = "SELECT * FROM users";
 $result = $conn->query($sql);
 if($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
-        if($_SESSION['user'] == $row['username'] && $_SESSION['pwd'] == $row['password']) {
+        if($_SESSION['user'] == $row['id'] && $_SESSION['pwd'] == $row['password']) {
             echo "<br>user authenticated: " . $row['username'] . "<br>";
             //set user
             $user = $row['id'];
@@ -29,13 +29,13 @@ if($result->num_rows > 0) {
     }
 }
 else {
-    header("Location:home.php?success=false");
+    header("Location:home.php?success=false&error=nouser");
     //die("<h2>DATABASE ERROR: EMPTY</h2>");
 }
 //if no user => die
 if($user == -1) {
     //    die("no user found");
-    header("Location:login.php?success=false");
+    header("Location:login.php?success=false&error=uservalidation");
 }
 
 //Save all the Data
@@ -44,8 +44,6 @@ $result = $conn->query($sql);
 $sql_insert = "";
 if($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
-//        echo "<br> id: " . $row['id'];
-//        echo" - " . $_POST[$row['id']];
         //create long SQL-String with inserts
         if($_POST[$row['id']] > 0) {
             $sql_insert .= "INSERT INTO eintragungen (produkt, menge, user) VALUES (".$row['id'].", ".$_POST[$row['id']].", ".$user.");";
@@ -58,10 +56,9 @@ else {
 }
 if($conn->multi_query($sql_insert) === TRUE) {
     echo "eintragungen gemacht";
+    header("Location:home.php?success=true");
 }
 else {
-    header("Location:home.php?success=false");
+    header("Location:home.php?success=false&error=insertfailed");
 }
-
-header("Location:home.php?success=true");
 ?>
