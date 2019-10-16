@@ -85,14 +85,9 @@ function inc(input) {
     $conn->close();
 ?>
 </div>
-<div class="d-flex content-align-end flex-row">
-    <div class="input-group input-group-lg">
-    <input type="text" class="form-control" placeholder="Username" name="user" value="<?php echo $_POST['user'] ?>">
-    <input type="text" class="form-control" placeholder="Passwort" name="pwd" value="<?php echo $_POST['pwd'] ?>">
-        <div class="input-group-append">
-            <button class="btn btn-success btn-large" type=submit>Senden</button>
-        </div>
-    </div>
+<div class="fixed-bottom d-flex flex-row m-2 justify-content-between" style="heigth:50px">
+    <a class="btn btn-danger btn-lg align-self-start" href="/abmelden.php">Abmelden</a>
+    <button class="btn btn-success btn-lg align-self-end" type="submit">Bestellung speichern</button>
 </div>
 </form>
 </div>
