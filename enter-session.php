@@ -23,19 +23,21 @@ if($result->num_rows > 0) {
             $user = $row['id'];
         }
     }
-}
-else {
-    die("<h2>DATABASE ERROR: EMPTY</h2>");
-    header("Location:home.php?success=false");
-
-}
 //if no user => die
 if($user == -1) {
-    die("no user found");
-    header("Location:home.php?success=false");
+//    die("no user found");
+    header("Location:login.php?success=false");
 }
-
+else {
 $_SESSION['user'] = $user;
 $_SESSION['pwd'] = $_POST['pwd'];
-header("Location:test.php");
+header("Location:home.php");
+}
+}
+else {
+//    die("<h2>DATABASE ERROR: EMPTY</h2>");
+    header("Location:login.php?success=false");
+
+}
+
 ?>
