@@ -30,6 +30,9 @@ if(isset($_SESSION['user']) == FALSE) {
             border: #25ffb3 medium solid;
             border-radius: .25rem;
         }
+
+        .buttonlength {
+            width: 250px;
     </style>
     <script type="text/javascript">
 function inc(input) {
@@ -44,9 +47,10 @@ function inc(input) {
     </script>
 </head>
 <body>
-<div class="container-fluid">
-    <form action="insert_data.php" method="post">
-    <div class='row'>
+
+<form action="insert_data.php" method="post">
+
+<div class="container d-flex flex-row flex-wrap justify-content-around">
     <?php
     $servername = "localhost";
     $username = "root";
@@ -66,36 +70,29 @@ function inc(input) {
 
     if ($num_rows = $result->num_rows > 0) {
         // output data of each row
-        $hz = 0;
-        $vr = 0;
         while ($row = $result->fetch_assoc()) {
-            if ($hz == 3) {
-                $hz = 0;
-                echo "</div><div class='row'>";
-            }
             echo "
-<div class='col-sm-4 d-flex'>
-   <div class='btn btn-block btn-primary m-2' onclick='inc(" . $row['shortname'] . ")'>
-    <input id='" . $row['shortname'] . "' class='numberinput' type=text min='0' max='9' value='0' name='" . $row['id'] . "' readonly width='1'>
-    <span class='h6'>" . $row['name'] . "</span>
-   </div> 
-</div>
-";
+                    <div class='buttonlength btn btn-primary m-2 btn-lg' onclick='inc(" . $row['shortname'] . ")'>
+                        <input id='" . $row['shortname'] . "' class='numberinput' type='text' value='0' readonly width='1'>
+                        <span class='h6'>" . $row['name'] . "</span>
+                    </div>
+                 ";
             //reset POST
             $_POST[$row['id']] = 0;
-            $hz = $hz + 1;
         }
     } else {
-        echo "0 results";
+        echo "<h1>0 results</h1>";
     }
     $conn->close();
 ?>
 </div>
+
 <div class="fixed-bottom d-flex flex-row m-2 justify-content-between" style="heigth:50px">
     <a class="btn btn-danger btn-lg align-self-start" href="/abmelden.php">Abmelden</a>
     <button class="btn btn-success btn-lg align-self-end" type="submit">Bestellung speichern</button>
 </div>
+
 </form>
-</div>
+
 </body>
 </html>
