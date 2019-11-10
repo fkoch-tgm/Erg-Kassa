@@ -1,11 +1,7 @@
 <?php
 session_start();
-//database
-$servername = "localhost";
-$username = "application";
-$password = "6FQAjKu5H8Q7oJ9f";
-$dbname = "ergdata";
-$conn = new mysqli($servername, $username, $password, $dbname);
+// creates a database-connection on the object $conn
+require 'establish_connection.php';
 
 echo "username: ".$_POST['user'];
 echo "<br>password: ".$_POST['pwd']."<br>";

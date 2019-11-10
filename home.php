@@ -61,19 +61,9 @@ if($_GET['success'] == 'false') {
 
 
 <div class="row">
-<?php
-$servername = "localhost";
-$username = "root";
-$password = "6bULvH7qXG54HGs7";
-$dbname = "ergdata";
-
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
-if ($conn->connect_error) {
-    die("<h2>ERROR</h2>" . $conn->connect_error);
-}
+<?php 
+// creates a database-connection on the object $conn
+require 'establish_connection.php';
 
 $sql = "SELECT * FROM produkte";
 $result = $conn->query($sql);

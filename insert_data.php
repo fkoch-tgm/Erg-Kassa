@@ -1,17 +1,9 @@
 <?php
 session_start();
 echo "test";
-$servername = "localhost";
-$username = "application";
-$password = "6FQAjKu5H8Q7oJ9f";
-$dbname = "ergdata";
 
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
-if ($conn->connect_error) {
-    die("<h2>CONNECT ERROR</h2>" . $conn->connect_error);
-}
+// creates a database-connection on the object $conn
+require 'establish_connection.php';
 
 echo "connection established <br>";
 
