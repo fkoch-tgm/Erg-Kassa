@@ -1,1 +1,5 @@
 [x] why doesnt alert work?
+[ ] Cost-Calculation
+[ ] Info Panel
+[ ] Admin Panel
+[ ] Overview
