@@ -85,11 +85,11 @@ if ($num_rows = $result->num_rows > 0) {
                 <div class='col-md-4 p-2'>
                     <div class='btn btn-primary btn-lg btn-block' onclick='inc(" . $row['shortname'] . ")'>
                         <div class='row'>
-                            <div class='col-auto'>
+                            <div class='col-auto align-self-center'>
                                 <input name='". $row['shortname'] ."' id='" . $row['shortname'] . "' class='numberinput' type='text' value='0' readonly width='1'>
                             </div>
                             <div class='col'>
-                                <span class='h6'>" . $row['name'] . "</span>
+                                <span class='h6'>" . $row['htmltext'] . "</span>
                             </div>
                         </div>
                     </div>
