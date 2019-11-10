@@ -41,14 +41,19 @@ if($user == -1) {
 //Save all the Data
 $sql = "SELECT * FROM produkte";
 $result = $conn->query($sql);
+echo "<br>".$result->num_rows;
 $sql_insert = "";
 if($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
         //create long SQL-String with inserts
-        if($_POST[$row['id']] > 0) {
-            $sql_insert .= "INSERT INTO eintragungen (produkt, menge, user) VALUES (".$row['id'].", ".$_POST[$row['id']].", ".$user.");";
+        echo "<br>row_id: ".$row['id']."<br>";
+        echo "shortname: ".$row['shortname']."<br>";
+        echo "value: ".$_POST[$row['id']]."<br>";
+        echo "value(sn): ".$_POST[$row['shortname']]."<hr>";
+        if($_POST[$row['shortname']] > 0) {
+            $sql_insert .= "INSERT INTO eintragungen (produkt, menge, user) VALUES (".$row['id'].", ".$_POST[$row['shortname']].", ".$user.");";
         }
-        unset($_POST[$row['id']]);
+        unset($_POST[$row['shortname']]);
     }
 }
 else {
