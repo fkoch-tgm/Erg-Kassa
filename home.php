@@ -106,9 +106,11 @@ $conn->close();
 </div>
 </div>
 
-<div class="fixed-bottom d-flex flex-row m-2 justify-content-between" style="heigth:50px">
-    <a class="btn btn-danger btn-lg align-self-start" href="/abmelden.php">Abmelden</a>
-    <button class="btn btn-success btn-lg align-self-end" type="submit">Bestellung speichern</button>
+<div class="fixed-bottom d-flex flex-row m-2" style="heigth:50px">
+    <a class="btn btn-danger btn-lg mr-auto" href="/abmelden.php">Abmelden</a>
+
+    <a class="btn btn-warning btn-lg mr-3" href="/home.php">Bestellung zurücksetzen</a>
+    <button class="btn btn-success btn-lg" type="submit">Bestellung speichern</button>
 </div>
 
 </form>
