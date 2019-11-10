@@ -3,3 +3,4 @@
 [ ] Info Panel
 [ ] Admin Panel
 [ ] Overview
+[ ] About Site
