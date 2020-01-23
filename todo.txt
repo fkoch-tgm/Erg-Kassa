@@ -1,6 +1,11 @@
-[x] why doesnt alert work?
 [ ] Cost-Calculation
 [ ] Info Panel
 [ ] Admin Panel
 [ ] Overview
+[ ] ShowData
 [ ] About Site
+
+[x] Date Picker
+[x] Use Date Picker
+[x] use date in php-query
+[ ] fix bug in query

@@ -14,7 +14,6 @@
 <body>
 <div class="container">
     <div class="row">
-        <form action="showdata.php" method="get">
         <div class="col-12 mt-4">
             <div id="dateContainer" class="input-group mb-3 align-self-center input-group-lg">
                 <div class="input-group-prepend">
@@ -22,7 +21,6 @@
                 </div>
                 <input id="date" type="text" class="form-control" placeholder="Von-Bis">
                 <div class="input-group-append">
-                    <button class="btn-lg" type="submit">Weiter</button>
                 </div>
             </div>
 
@@ -30,9 +28,18 @@
                 $(function() {
                     $('#date').daterangepicker({
                         timePicker: true,
-                        startDate: moment().startOf('hour'),
+<?php 
+if(isset($_GET['start']) and isset($_GET['end'])) {
+    echo "startDate: moment(". $_GET['start'] . "),";
+    echo "endDate: moment(" . $_GET['end'] . "),";
+}
+else {
+    echo "startDate: moment().startOf('hour'),";
+    echo "endDate: moment().startOf('hour').add(1,'day'),";
+}
+?>
                         timePicker24Hour: true,
-                        endDate: moment().startOf('hour').add(1,'day'),
+                        
                         locale: {
                             format: 'DD.MM.YYYY (hh:mm)',
                             "separator": " - ",
@@ -67,14 +74,12 @@
                         firstDay: 1,
                         parentEl: "#dateContainer"
                     }, function (start, end, label) {
-                           alert(start + "-" + end); 
-                           console.log(start + "-" + end);
+                           window.location.href = "showdata.php?start="+start+"&end="+end;
                         }
                     );
                 });
             </script>
         </div>
-        </form>
     </div>
 
 <h1>Data:</h1>
@@ -94,6 +99,8 @@
 require 'establish_connection.php';
 
 $sql = "SELECT produkte.name AS NAME, IFNULL(SUM(eintragungen.menge), 0) AS MENGE FROM produkte LEFT JOIN eintragungen ON produkte.id = eintragungen.produkt GROUP BY produkte.id";
+// Date-String
+$sql = $sql . "WHERE eintagungen.zeitpunkt > " . ($_GET['start'] /1000) . " AND eintragungen.zeitpunkt < " . ($_GET['end'] / 1000);
 
 $result = $conn->query($sql);
 while($row = $result->fetch_assoc()) {
