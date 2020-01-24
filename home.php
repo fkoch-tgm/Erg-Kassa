@@ -2,6 +2,7 @@
 session_start();
 if(isset($_SESSION['user']) == FALSE) {
     header("Location:login.php?success=false&error=nouserinhome");
+    die();
 }
 ?>
 <!DOCTYPE html>
