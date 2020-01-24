@@ -1,3 +1,9 @@
+<?php 
+session_start();
+if(isset($_SESSION['user']) == FALSE) {
+    header("Location:login.php?success=false&error=nouserinhome");
+}
+?>
 <!DOCTYPE html>
 <html>
 <head>
