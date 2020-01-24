@@ -100,7 +100,10 @@ require 'establish_connection.php';
 
 $sql = "SELECT produkte.name AS NAME, IFNULL(SUM(eintragungen.menge), 0) AS MENGE FROM produkte LEFT JOIN eintragungen ON produkte.id = eintragungen.produkt GROUP BY produkte.id";
 // Date-String
-$sql = $sql . "WHERE eintagungen.zeitpunkt > " . ($_GET['start'] /1000) . " AND eintragungen.zeitpunkt < " . ($_GET['end'] / 1000);
+$sql = $sql . " WHERE eintagungen.zeitpunkt > " . ($_GET['start'] / 1000) . " AND eintragungen.zeitpunkt < " . ($_GET['end'] / 1000);
+
+//debug
+echo "<script>console.log('$sql');</script>";
 
 $result = $conn->query($sql);
 while($row = $result->fetch_assoc()) {
