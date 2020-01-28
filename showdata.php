@@ -36,8 +36,8 @@ if(isset($_SESSION['user']) == FALSE) {
                         timePicker: true,
 <?php 
 if(isset($_GET['start']) and isset($_GET['end'])) {
-    echo "startDate: moment(". $_GET['start'] . "),";
-    echo "endDate: moment(" . $_GET['end'] . "),";
+    echo "startDate: moment('". $_GET['start'] . "'),";
+    echo "endDate: moment('" . $_GET['end'] . "'),";
 }
 else {
     echo "startDate: moment().startOf('hour'),";
@@ -80,7 +80,7 @@ else {
                         firstDay: 1,
                         parentEl: "#dateContainer"
                     }, function (start, end, label) {
-                           window.location.href = "showdata.php?start="+start+"&end="+end;
+                           window.location.href = "showdata.php?start="+start.format("YYYY-MM-DD hh:mm:ss")+"&end="+end.format("YYYY-MM-DD hh:mm:ss");
                         }
                     );
                 });
@@ -106,11 +106,11 @@ require 'establish_connection.php';
 
 $sql = "SELECT produkte.name AS NAME, IFNULL(SUM(eintragungen.menge), 0) AS MENGE FROM produkte LEFT JOIN eintragungen ON produkte.id = eintragungen.produkt";
 // Date-String
-$sql = $sql . " WHERE eintragungen.zeitpunkt > " . ($_GET['start'] / 1000) . " AND eintragungen.zeitpunkt < " . ($_GET['end'] / 1000);
+$sql = $sql . " WHERE eintragungen.zeitpunkt > '".$_GET['start']."' AND eintragungen.zeitpunkt < '" .$_GET['end']."'";
 $sql = $sql . " GROUP BY produkte.id";
 
 //debug
-echo "<script>console.log('$sql');</script>";
+echo '<script>console.log("'.$sql.'");</script>';
 
 $result = $conn->query($sql);
 while($row = $result->fetch_assoc()) {
