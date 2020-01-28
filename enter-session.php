@@ -27,7 +27,7 @@ if($user == -1) {
 else {
 $_SESSION['user'] = $user;
 $_SESSION['pwd'] = $_POST['pwd'];
-header("Location:home.php?user=".$user);
+header("Location:overview.php");
 }
 }
 else {
