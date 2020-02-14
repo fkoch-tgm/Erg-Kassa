@@ -47,7 +47,7 @@ else {
                         timePicker24Hour: true,
                         
                         locale: {
-                            format: 'DD.MM.YYYY (hh:mm)',
+                        format: 'YYYY-MM-DD HH:mm',
                             "separator": " - ",
                             "applyLabel": "Bestätigen",
                             "cancelLabel": "Abbrechen",
@@ -80,7 +80,7 @@ else {
                         firstDay: 1,
                         parentEl: "#dateContainer"
                     }, function (start, end, label) {
-                           window.location.href = "showdata.php?start="+start.format("YYYY-MM-DD hh:mm:ss")+"&end="+end.format("YYYY-MM-DD hh:mm:ss");
+                           window.location.href = "showdata.php?start="+start.format("YYYY-MM-DD HH:mm:ss")+"&end="+end.format("YYYY-MM-DD HH:mm:ss");
                         }
                     );
                 });
